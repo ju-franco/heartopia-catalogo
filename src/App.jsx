@@ -462,7 +462,11 @@ function App() {
                          {isFav ? <IoHeart size={20}/> : <IoHeartOutline size={20}/>}
                        </button>
                     </div>
-                    <img src={item.imagem} alt={item.nome} style={{ ...styles.image, filter: item.coletado ? "none" : "grayscale(100%) opacity(0.6)" }} />
+                    <img 
+                      src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${item.imagem}`} 
+                      alt={item.nome} 
+                      style={{ ...styles.image, filter: item.coletado ? "none" : "grayscale(100%) opacity(0.6)" }} 
+                    />             
                     <h3 style={{ ...styles.title, color: theme.textMain }}>{item.nome}</h3>
                     {item.categoria === "jardinagem" && (<div style={styles.infoRow}><MdAttachMoney style={{ color: "var(--cor-destaque)" }} /><span style={styles.infoText}>Semente: <b style={{ color: '#4caf50' }}>{item.precoSemente || "0"}</b></span></div>)}
                     {["peixes", "aves", "insetos"].includes(item.categoria) && (<><div style={styles.infoRow}><IoLocationSharp style={{ color: "var(--cor-destaque)" }} /><span style={styles.infoText}>{item.local}</span></div><div style={styles.infoRow}><div style={styles.climaContainer}>{item.clima?.map((c, i) => <span key={i}>{renderizarIconeClima(c)}</span>)}</div></div></>)}
