@@ -78,7 +78,30 @@ export const iguarias = [
     },
     {
     id: 407, 
-    nome: "Gelia de Morango",
+    nome: "Alimento Estranho",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/alimento-estranho.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    },
+    {
+    id: 408, 
+    nome: "Bebida Estranha",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/bebida-estranha.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    limiteEstrela: 1
+    },
+    {
+    id: 409, 
+    nome: "Geleia de Morango",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/geleia-de-morango.jpg",
     nivelNecessario: 1,
@@ -88,7 +111,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 408, 
+    id: 410, 
     nome: "Geleia de Abacaxi",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/geleia-de-abacaxi.jpg",
@@ -99,8 +122,8 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 409, 
-    nome: "Gelia  de Uva",
+    id: 411, 
+    nome: "Geleia  de Uva",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/geleia-de-uva.jpg",
     nivelNecessario: 1,
@@ -110,7 +133,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 410, 
+    id: 412, 
     nome: "Isca de Peixe com Fritas",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/isca-de-peixe-com-fritas.jpg",
@@ -121,7 +144,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 411, 
+    id: 413, 
     nome: "Bolo de Queijo",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/bolo-de-queijo.jpg",
@@ -132,7 +155,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 412, 
+    id: 414, 
     nome: "Rocambole Nuvem Clássico",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/rocambole-nuvem-classico.jpg",
@@ -143,7 +166,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 413, 
+    id: 415, 
     nome: "Rocambole Nuvem Vermelho",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/rocambole-nuvem-vermelho.jpg",
@@ -154,7 +177,18 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 414, 
+    id: 416, 
+    nome: "Rocambole Nuvem Laranja",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/rocambole-nuvem-laranja.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    },
+    {
+    id: 417, 
     nome: "Rocambole Nuvem Roxo",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/rocambole-nuvem-roxo.jpg",
@@ -165,7 +199,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 415, 
+    id: 418, 
     nome: "Rocambole Nuvem Verde",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/rocambole-nuvem-verde.jpg",
@@ -176,7 +210,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 416, 
+    id: 419, 
     nome: "Rocambole Nuvem Ciano",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/rocambole-nuvem-ciano.jpg",
@@ -187,18 +221,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 417, 
-    nome: "Rocambole Nuvem Laranja",
-    categoria: "iguarias",
-    imagem: "/imagens/iguarias/.jpg",
-    nivelNecessario: 1,
-    ingredientes: [],
-    coletado: false,
-    estrelas: 0,
-    precos: []
-    },
-    {
-    id: 418, 
+    id: 420, 
     nome: "Rocambole Nuvem Amarelo",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/.jpg",
@@ -209,10 +232,10 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 419, 
+    id: 421, 
     nome: "Rocambole Nuvem Azul",
     categoria: "iguarias",
-    imagem: "/imagens/iguarias/.jpg",
+    imagem: "/imagens/iguarias/rocambole-nuvem-azul.jpg",
     nivelNecessario: 1,
     ingredientes: [],
     coletado: false,
@@ -220,7 +243,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 420, 
+    id: 422, 
     nome: "Torta de Cogumelos",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-cogumelos.jpg",
@@ -231,7 +254,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 421, 
+    id: 423, 
     nome: "Torta de Cogumelos-ostra",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-cogumelos-ostra.jpg",
@@ -242,7 +265,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 422, 
+    id: 424, 
     nome: "Torta de Shiitake",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-shiitake.jpg",
@@ -253,7 +276,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 423, 
+    id: 425, 
     nome: "Torta de Champignon",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-champignon.jpg",
@@ -264,7 +287,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 424, 
+    id: 426, 
     nome: "Torta de Porcinos",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-porcinos.jpg",
@@ -275,7 +298,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 425, 
+    id: 427, 
     nome: "Torta de Trufa-negra",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-trufa-negra.jpg",
@@ -286,7 +309,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 426, 
+    id: 428, 
     nome: "Cogumelo Assado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/cogumelo-assado.jpg",
@@ -297,7 +320,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 427, 
+    id: 429, 
     nome: "Cogumelo-ostra Assado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/cogumelo-ostra-assado.jpg",
@@ -308,7 +331,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 428, 
+    id: 430, 
     nome: "Shiitake Assado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/shiitake-assado.jpg",
@@ -319,7 +342,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 429, 
+    id: 431, 
     nome: "Champignon Assado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/champignon-assado.jpg",
@@ -330,8 +353,8 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 430, 
-    nome: "Porcino  Assado",
+    id: 432, 
+    nome: "Porcino Assado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/porcino-assado.jpg",
     nivelNecessario: 1,
@@ -341,7 +364,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 431, 
+    id: 433, 
     nome: "Ovo Cozido Termal",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/ovo-cozido-termal.jpg",
@@ -352,7 +375,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 432, 
+    id: 434, 
     nome: "Café",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/cafe.jpg",
@@ -363,7 +386,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 433, 
+    id: 435, 
     nome: "Latte",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/latte.jpg",
@@ -374,7 +397,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 434, 
+    id: 436, 
     nome: "Bagel de Peixe Defumado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/bagel-de-peixe-defumado.jpg",
@@ -385,7 +408,7 @@ export const iguarias = [
     precos: []
     },
      {
-    id: 435, 
+    id: 437, 
     nome: "Arroz de Marisco",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/arroz-de-marisco.jpg",
@@ -396,7 +419,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 436, 
+    id: 438, 
     nome: "Ensopado",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/ensopado-rustico.jpg",
@@ -407,7 +430,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 437, 
+    id: 439, 
     nome: "Macarrão com Truta-negra e Creme",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/macarrao-com-trufa-negra-e-creme.jpg",
@@ -418,7 +441,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 438, 
+    id: 440, 
     nome: "Pizza de Marisco",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/pizza-de-marisco.jpg",
@@ -429,7 +452,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 439, 
+    id: 441, 
     nome: "Macarrão à Bolonhesa",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/macarrao-a-bolonhesa.jpg",
@@ -440,7 +463,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 440, 
+    id: 442, 
     nome: "Torta de Maçã",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/torta-de-maca.jpg",
@@ -451,7 +474,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 441, 
+    id: 443, 
     nome: "Bolo de Cenoura",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/bolo-de-cenoura.jpg",
@@ -462,7 +485,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 442, 
+    id: 444, 
     nome: "Caldo de Milho",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/caldo-de-milho.jpg",
@@ -473,7 +496,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 443, 
+    id: 446, 
     nome: "Prato Misto de Marisco de Luxo",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/prato-misto-de-marisco-de-luxo.jpg",
@@ -484,7 +507,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 444, 
+    id: 447, 
     nome: "Tiramisu",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/tiramisu.jpg",
@@ -495,7 +518,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 445, 
+    id: 448, 
     nome: "Kit de Camping",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/kit-de-camping.jpg",
@@ -506,7 +529,7 @@ export const iguarias = [
     precos: []
     },
     {
-    id: 446, 
+    id: 449, 
     nome: "Chá da Tarde Britânico",
     categoria: "iguarias",
     imagem: "/imagens/iguarias/cha-da-tarde-britanico.jpg",
@@ -515,5 +538,214 @@ export const iguarias = [
     coletado: false,
     estrelas: 0,
     precos: []
-    }
+    },
+    {
+    id: 450, 
+    nome: "Hambúrguer de Carne",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/hamburguer-de-carne.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    },  
+    {
+    id: 451, 
+    nome: "Entrada de Lagostim",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/entrada-de-lagostim.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    },  
+    {
+    id: 452, 
+    nome: "Entrada de Lagostim Nórdico Azul",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/entrada-de-lagostim-nordico-azul.jpg",
+    nivelNecessario: 9,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    },
+    {
+    id: 453, 
+    nome: "Berinjela com Carne Moída",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/berinjela-com-carne-moida.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    }, 
+    {
+    id: 454, 
+    nome: "Jantar à Luz de Velas",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/jantar-a-luz-de-velas.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    }, 
+    {
+    id: 455, 
+    nome: "Calda de Chocolate",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/calda-de-chocolate.jpg",
+    nivelNecessario: 9,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    },
+    {
+    id: 456, 
+    nome: "Bolo de Ervas Frescas",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/bolo-de-ervas-frescas.jpg",
+    nivelNecessario: 9,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    },
+    ////////////////// Gala da Neve
+    {
+    id: 457, 
+    nome: "Café Gelado",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/cafe-gelado.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 458, 
+    nome: "Latte Gelado",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/latte-gelado.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 459, 
+    nome: "Carne com Purê de Nabo",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/carne-com-pure-de-nabo.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 460, 
+    nome: "Caldo Cremoso de Nabo",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/caldo-cremoso-de-nabo.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 461, 
+    nome: "Panqueca com Açúcar em Pó Clássica",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/panqueca-com-acucar-em-po-classica.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 462, 
+    nome: "Panqueca com Açúcar em Pó e Mirtilo",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/panqueca-com-acucar-em-po-e-mirtilo.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 463, 
+    nome: "Panqueca com Açúcar em Pó e Framboesa",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/panqueca-com-acucar-em-po-e-framboesa.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 464, 
+    nome: "Panqueca com Açúcar em Pó e Maçã",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/panqueca-com-acucar-em-po-e-maca.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 465, 
+    nome: "Panqueca com Açúcar em Pó e Laranja",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/panqueca-com-acucar-em-po-e-laranja.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, 
+    {
+    id: 466, 
+    nome: "Banquete da Aurora",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/banquete-da-aurora.jpg",
+    nivelNecessario: 1,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+    }, ///////////////
+    {
+    id: 467, 
+    nome: "Caranguejo-real ao Vapor",
+    categoria: "iguarias",
+    imagem: "/imagens/iguarias/caranguejo-real-ao-vapor.jpg",
+    nivelNecessario: 10,
+    ingredientes: [],
+    coletado: false,
+    estrelas: 0,
+    precos: []
+    }, 
 ];

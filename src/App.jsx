@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { db, auth } from "./firebase";
 import { onAuthStateChanged, signOut, updateEmail } from "firebase/auth";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 import Login from "./components/Login";
 
-// Importe de dados
+import { styles, stylesIA } from "./styles";
 import { aves } from "./data/aves";
 import { peixes } from "./data/peixes";
 import { insetos } from "./data/insetos";
 import { jardinagem } from "./data/jardinagem";
 import { iguarias } from "./data/iguarias";
+import { esculturas } from "./data/esculturas";
 import { conquistas } from "./data/conquistas";
 
 import {
@@ -17,27 +18,29 @@ import {
   IoLogOutOutline, IoGiftOutline, IoCheckmarkSharp, IoSettingsOutline,
   IoPersonOutline, IoMoonOutline, IoSunnyOutline, IoMailOutline, IoImageOutline,
   IoStatsChartOutline, IoGlobeOutline, IoHeart, IoHeartOutline, IoFilterOutline, IoTrophyOutline,
-  IoAddCircleOutline, IoTrashOutline, IoCameraOutline
+  IoAddCircleOutline, IoTrashOutline, IoCameraOutline, IoSparklesOutline, IoArrowUp
 } from "react-icons/io5";
-import { PiRainbowCloud, PiBird, PiFish, PiBug, PiFlower, PiChefHat, PiMedalFill, PiDog, PiCat } from "react-icons/pi";
+import { PiRainbowCloud, PiBird, PiFish, PiButterfly, PiFlower, PiChefHat, PiMedalFill, PiDog, PiCat, PiSnowflake } from "react-icons/pi";
 import { IoTimeOutline } from "react-icons/io5";
 import { GiRoundStar, GiTrophy } from "react-icons/gi";
 import { MdAttachMoney } from "react-icons/md";
 
+import { obterRespostaIA } from "./services/aiService";
+
 function App() {
   const [usuario, setUsuario] = useState(null);
-  const [perfil, setPerfil] = useState({ 
-    nickname: "", 
-    avatar: "🌸", 
+  const [perfil, setPerfil] = useState({
+    nickname: "",
+    avatar: "🌸",
     modoEscuro: false,
     conquistasConcluidas: [],
     pets: [],
-    favoritos: [] 
+    favoritos: []
   });
   const [itens, setItens] = useState([]);
   const [busca, setBusca] = useState("");
   const [nivelHobby, setNivelHobby] = useState(1);
-  const [carregando, setCarregando] = useState(true);
+
   const [hoveredId, setHoveredId] = useState(null);
   const [categoriaAtiva, setCategoriaAtiva] = useState("jardinagem");
   const [menuAberto, setMenuAberto] = useState(false);
@@ -46,6 +49,8 @@ function App() {
   const [apenasFavoritos, setApenasFavoritos] = useState(false);
   const [apenasDisponiveisAgora, setApenasDisponiveisAgora] = useState(false);
   const [climaSelecionado, setClimaSelecionado] = useState("");
+
+  const [filtroEstrelas, setFiltroEstrelas] = useState(0); // 0 significa que o filtro está desativado
 
   const [novoEmail, setNovoEmail] = useState("");
   const [urlFoto, setUrlFoto] = useState("");
@@ -58,7 +63,8 @@ function App() {
     insetos: "#fce4ec",
     conquistas: "#fff4e6",
     cachorros: "#e1fefc",
-    gatos: "#ffe0ea"
+    gatos: "#ffe0ea",
+    esculturas: "#e1e3fe"
   };
 
   const coresDestaqueCategorias = {
@@ -69,7 +75,8 @@ function App() {
     insetos: "#ff69b4",
     conquistas: "#ff9800",
     cachorros: "#16e2db",
-    gatos: "#ff4375"
+    gatos: "#ff4375",
+    esculturas: "#5e65cd"
   };
 
   const tabelaMetas = {
@@ -77,7 +84,8 @@ function App() {
     iguarias: [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 90, 100, 110, 120],
     peixes: [5, 10, 25, 40, 55, 70, 85, 100, 115, 130, 145, 160, 175, 190, 205, 220, 235, 250, 260, 270, 280],
     insetos: [10, 15, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 155, 165, 175, 185, 200],
-    aves: [5, 10, 15, 20, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 160, 170, 180]
+    aves: [5, 10, 15, 20, 25, 35, 45, 55, 65, 75, 85, 95, 105, 115, 125, 135, 145, 160, 170, 180],
+    esculturas: [10, 15, 20, 25, 25, 30, 40, 45, 50, 55]
   };
 
   const categorias = [
@@ -85,11 +93,44 @@ function App() {
     { id: "peixes", nome: "Peixes", icone: <PiFish /> },
     { id: "iguarias", nome: "Iguarias", icone: <PiChefHat /> },
     { id: "aves", nome: "Aves", icone: <PiBird /> },
-    { id: "insetos", nome: "Insetos", icone: <PiBug /> },
+    { id: "insetos", nome: "Insetos", icone: <PiButterfly /> },
     { id: "cachorros", nome: "Cachorros", icone: <PiDog /> },
     { id: "gatos", nome: "Gatos", icone: <PiCat /> },
+    { id: "esculturas", nome: "Esculturas", icone: <PiSnowflake /> },
     { id: "conquistas", nome: "Conquistas", icone: <IoTrophyOutline /> },
   ];
+
+  const [chatAberto, setChatAberto] = useState(false);
+  const [mensagens, setMensagens] = useState([{ autor: 'npc', texto: 'Olá! Sou sua IA Guia. Em que posso ajudar hoje? 🦋' }]);
+  const [inputUsuario, setInputUsuario] = useState("");
+  const [carregando, setCarregando] = useState(false);
+  const [pensandoIA, setPensandoIA] = useState(false);
+
+  const [mostrarSubir, setMostrarSubir] = useState(false);
+
+  const irParaOTopo = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    const verificarScroll = () => {
+      if (window.scrollY > 300) {
+        setMostrarSubir(true);
+      } else {
+        setMostrarSubir(false);
+      }
+    };
+
+    window.addEventListener("scroll", verificarScroll);
+    return () => window.removeEventListener("scroll", verificarScroll);
+  }, []);
+
+
+  const mensagensEndRef = useRef(null);
+  useEffect(() => {
+    // Rola para o marcador sempre que 'mensagens' mudar
+    mensagensEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [mensagens]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -105,9 +146,13 @@ function App() {
     return unsubscribe;
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("nivelHobby", nivelHobby);
+  }, [nivelHobby]);
+
   const carregarDadosDoUsuario = async (uid) => {
     setCarregando(true);
-    const todosItensLocais = [...aves, ...peixes, ...insetos, ...jardinagem, ...iguarias];
+    const todosItensLocais = [...aves, ...peixes, ...insetos, ...jardinagem, ...iguarias, ...esculturas];
     try {
       const docRef = doc(db, "usuarios", uid);
       const docSnap = await getDoc(docRef);
@@ -148,7 +193,7 @@ function App() {
   };
 
   const alternarFavorito = (id) => {
-    const novosFavoritos = perfil.favoritos.includes(id) 
+    const novosFavoritos = perfil.favoritos.includes(id)
       ? perfil.favoritos.filter(favId => favId !== id)
       : [...perfil.favoritos, id];
     salvarPerfil({ favoritos: novosFavoritos });
@@ -207,6 +252,32 @@ function App() {
     }
   };
 
+  const enviarPergunta = async () => {
+    if (!inputUsuario.trim()) return;
+
+    const textoMsg = inputUsuario;
+    setInputUsuario("");
+    setMensagens(prev => [...prev, { autor: 'user', texto: textoMsg }]);
+    setPensandoIA(true);
+
+    try {
+      // Juntamos apenas o que existir de fato. 
+      // Se 'aves' não estiver definido, ele ignora e não quebra o código.
+      const todosOsDados = [...aves, ...peixes, ...insetos, ...jardinagem, ...iguarias, ...esculturas];
+
+      console.log("Dados enviados para o Guia:", todosOsDados.length, "itens.");
+
+      const resposta = await obterRespostaIA(textoMsg, todosOsDados, perfil, mensagens);
+      setMensagens(prev => [...prev, { autor: 'npc', texto: resposta }]);
+
+    } catch (e) {
+      console.error("Erro real que aconteceu:", e); // Isso vai te mostrar a verdade no F12!
+      setMensagens(prev => [...prev, { autor: 'npc', texto: "O Guia se distraiu com uma borboleta... 🦋 Tente de novo!" }]);
+    } finally {
+      setPensandoIA(false);
+    }
+  };
+
   const renderizarIconeClima = (clima) => {
     const size = "22px";
     if (!clima) return null;
@@ -232,28 +303,18 @@ function App() {
   const metasAtuais = tabelaMetas[categoriaAtiva] || [10, 20, 30, 40, 50, 60, 70];
   const valorMaximo = metasAtuais[metasAtuais.length - 1];
 
+  // LOGICA DE SEPARAÇÃO DOS ITENS
+  const itensDoEvento = itensDaCategoria.filter(item => item.evento === "Gala da Neve");
+
   const itensFiltrados = itensDaCategoria.filter(item => {
     const passaBusca = item.nome.toLowerCase().includes(busca.toLowerCase());
     const passaNivel = (item.nivelNecessario || 1) <= nivelHobby;
     const passaFaltantes = apenasFaltantes ? !item.coletado : true;
     const passaFavoritos = apenasFavoritos ? perfil.favoritos.includes(item.id) : true;
-    
-    let passaClima = true;
-    if (climaSelecionado !== "") {
-      passaClima = item.clima && item.clima.some(c => c.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(climaSelecionado));
-    }
-    
-    let passaDisponivel = true;
-    if (apenasDisponiveisAgora && item.horario && item.horario !== "O dia todo") {
-      const horaAtual = new Date().getHours();
-      const horas = item.horario.match(/\d+/g);
-      if (horas && horas.length >= 2) {
-        const inicio = parseInt(horas[0]);
-        const fim = parseInt(horas[2]);
-        passaDisponivel = inicio < fim ? (horaAtual >= inicio && horaAtual < fim) : (horaAtual >= inicio || horaAtual < fim);
-      }
-    }
-    return passaBusca && passaNivel && passaFaltantes && passaDisponivel && passaClima && passaFavoritos;
+
+    const passaEstrelas = filtroEstrelas > 0 ? item.estrelas === filtroEstrelas : true;
+    return passaBusca && passaNivel && passaFaltantes && passaFavoritos && passaEstrelas && item.evento !== "Gala da Neve";
+
   });
 
   const itensExibidosNoGrid = [...itensFiltrados].sort((a, b) => {
@@ -264,12 +325,203 @@ function App() {
     return 0;
   });
 
-  if (!usuario) return <Login />;
-  if (carregando) return <div style={{ ...styles.loading, backgroundColor: theme.bg }}><h2 style={{ fontFamily: 'Quicksand' }}>Carregando Heartopia... 🌸</h2></div>;
+  // Função auxiliar para renderizar o Card (para evitar repetição de código)
+  const renderCard = (item) => {
+    const isFav = perfil.favoritos.includes(item.id);
+    const isGala = item.evento === "Gala da Neve";
 
+    return (
+      <div key={item.id} style={{
+        ...styles.card,
+        backgroundColor: theme.cardBg,
+        border: item.coletado ? "2px solid var(--cor-destaque)" : isFav ? "2px solid #ff4375" : isGala ? "2px solid #2196f3" : "2px solid transparent",
+        boxShadow: isGala ? 'inset 0 0 10px rgba(33, 150, 243, 0.1)' : '0 5px 15px rgba(0,0,0,0.05)'
+      }}>
+        <div style={styles.cardHeader}>
+          <label style={styles.checkboxContainer}><input type="checkbox" checked={item.coletado} onChange={(e) => atualizarItem(item.id, { coletado: e.target.checked, estrelas: e.target.checked ? (item.estrelas || 1) : 0 })} /><span style={{ color: item.coletado ? "var(--cor-destaque)" : "#999", fontWeight: "bold", fontSize: "10px" }}>{item.coletado ? "COLETADO" : "PENDENTE"}</span></label>
+          <div style={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
+            {isGala && <PiSnowflake title="Gala da Neve" color="#2196f3" size={16} />}
+            <button onClick={() => alternarFavorito(item.id)} style={{ ...styles.favBtn, color: isFav ? "#ff4375" : "#ddd" }}>
+              {isFav ? <IoHeart size={20} /> : <IoHeartOutline size={20} />}
+            </button>
+          </div>
+        </div>
+
+        <img
+          src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${item.imagem}`}
+          alt={item.nome}
+          style={{ ...styles.image, filter: item.coletado ? "none" : "grayscale(100%) opacity(0.6)" }}
+        />
+        <h3 style={{ ...styles.title, color: theme.textMain }}>{item.nome}</h3>
+
+        {item.categoria === "jardinagem" && (<div style={styles.infoRow}><MdAttachMoney style={{ color: "var(--cor-destaque)" }} /><span style={styles.infoText}>Semente: <b style={{ color: '#4caf50' }}>{item.precoSemente || "0"}</b></span></div>)}
+        {["peixes", "aves", "insetos", "esculturas"].includes(item.categoria) && (<><div style={styles.infoRow}><IoLocationSharp style={{ color: "var(--cor-destaque)" }} /><span style={styles.infoText}>{item.local}</span></div><div style={styles.infoRow}><div style={styles.climaContainer}>{item.clima?.map((c, i) => <span key={i}>{renderizarIconeClima(c)}</span>)}</div></div></>)}
+        {item.categoria === "peixes" && (<div style={styles.infoRow}><div style={{ ...styles.shadowBadge, backgroundColor: item.sombra === "Dourada" ? "#fff9e6" : item.sombra === "Azul" ? "#e6f0ff" : "var(--cor-fundo-sutil)", color: item.sombra === "Dourada" ? "#d4a017" : item.sombra === "Azul" ? "#007bff" : "var(--cor-destaque)" }}>Sombra: {item.sombra || "N/A"}</div></div>)}
+        {item.categoria !== "iguarias" && (<div style={styles.infoRow}><IoTimeOutline style={{ color: "#888" }} /><span style={styles.infoText}>{item.horario}</span></div>)}
+
+        {/* Selo de Nível Ajustado */}
+        <div style={{
+          backgroundColor: nivelHobby < (item.nivelNecessario || 1) ? "#fff0f0" : "rgba(0,0,0,0.05)",
+          color: nivelHobby < (item.nivelNecessario || 1) ? "#ff4d4d" : "#888",
+          border: nivelHobby < (item.nivelNecessario || 1) ? "1px solid #ffcccb" : "none",
+          padding: "2px 6px",
+          borderRadius: "8px",
+          fontSize: "10px",
+          fontWeight: "800",
+          fontFamily: "'Quicksand', sans-serif",
+
+          // ESTAS DUAS LINHAS SÃO A CHAVE:
+          width: "fit-content", // Faz o fundo ter exatamente o tamanho do texto
+          display: "inline-flex", // Garante que ele não se comporte como um bloco que ocupa a linha toda
+
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "0 auto 10px auto",
+        }}>
+          Lv.{item.nivelNecessario || 1}
+        </div>
+
+
+
+        {item.coletado && (
+          <div style={styles.starContainer} onMouseEnter={() => setHoveredId(item.id)} onMouseLeave={() => setHoveredId(null)}>
+            {/* Tooltip de preços (mantém igual) */}
+            {hoveredId === item.id && item.precos && item.precos.length > 0 && (
+              <div style={{ ...styles.tooltip, backgroundColor: theme.cardBg }}>
+                {item.precos.map((p, idx) => (
+                  <div key={idx} style={{ ...styles.tooltipLine, borderBottom: `1px solid ${theme.badgeBg}` }}>
+                    <span style={{ color: '#f7c948' }}>{"⭐".repeat(idx + 1)}</span>
+                    <span style={{ fontWeight: '700', color: "var(--cor-destaque)" }}>{p.toLocaleString('pt-BR')}</span>
+                  </div>
+                ))}
+                <div style={{ ...styles.tooltipArrow, borderColor: `${theme.cardBg} transparent transparent transparent` }}></div>
+              </div>
+            )}
+
+            {/* Lógica das Estrelas com Limite */}
+            {[1, 2, 3, 4, 5].map((num) => {
+              // Se o item tiver limiteEstrela e o número for maior que esse limite, não mostra a estrela
+              if (item.limiteEstrela && num > item.limiteEstrela) return null;
+
+              return (
+                <GiRoundStar
+                  key={num}
+                  onClick={() => atualizarItem(item.id, { estrelas: num })}
+                  style={{
+                    ...styles.star,
+                    color: num <= item.estrelas ? "#f7c948" : "#ddd",
+                    cursor: item.limiteEstrela === 1 ? "default" : "pointer" // Remove a mãozinha se for fixo
+                  }}
+                />
+              );
+            })}
+
+            {/* Aviso visual opcional para itens de 1 estrela */}
+            {item.limiteEstrela === 1 && (
+              <span style={{ fontSize: '9px', color: '#999', marginLeft: '5px', fontWeight: 'bold' }}></span>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  if (!usuario) return <Login />;
+  if (carregando) {
+    return (
+      <div style={{
+        position: 'fixed',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: theme.bg,
+        zIndex: 9999,
+        overflow: 'hidden'
+      }}>
+        {/* Background Animado com Círculos de Luz */}
+        <div className="bg-glow"></div>
+
+        <div style={{ position: 'relative', textAlign: 'center', zIndex: 1 }}>
+          {/* Borboleta Animada (Bate as asas e flutua) */}
+          <div className="butterfly-container">
+            <PiButterfly style={{ fontSize: '100px', color: '#ff69b4' }} />
+          </div>
+
+          {/* Texto com efeito de brilho suave */}
+          <h1 style={{
+            fontFamily: 'Quicksand',
+            fontWeight: '800',
+            color: '#ff69b4',
+            marginTop: '30px',
+            letterSpacing: '2px',
+            fontSize: '28px'
+          }}>
+            CATÁLOGO HEARTOPIA
+          </h1>
+
+          <p className="loading-text" style={{
+            color: '#ff69b4',
+            opacity: 0.7,
+            fontWeight: '500',
+            fontSize: '16px'
+          }}>
+            Carregando os dados...
+          </p>
+        </div>
+
+        {/* CSS MÁGICO - Pode colar direto aqui no return */}
+        <style>{`
+        /* 1. Animação da Borboleta (Flutuar e Bater Asas) */
+        .butterfly-container {
+          animation: float 4s infinite ease-in-out, wingBeat 0.8s infinite ease-in-out;
+          filter: drop-shadow(0 0 15px var(--cor-destaque));
+        }
+
+        @keyframes wingBeat {
+          0%, 100% { transform: scaleX(1); }
+          50% { transform: scaleX(0.5); }
+        }
+
+        @keyframes float {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-30px); }
+        }
+
+        /* 2. Efeito de Brilho no Fundo */
+        .bg-glow {
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          background: var(--cor-destaque);
+          filter: blur(150px);
+          border-radius: 50%;
+          opacity: 0.3;
+          animation: pulseGlow 6s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+          from { transform: scale(1); opacity: 0.2; }
+          to { transform: scale(2); opacity: 0.4; }
+        }
+
+        /* 3. Texto Pulsante */
+        .loading-text {
+          animation: fade 2s infinite;
+        }
+
+        @keyframes fade {
+          0%, 100% { opacity: 0.3; }
+          50% { opacity: 0.8; }
+        }
+      `}</style>
+      </div>
+    );
+  }
   return (
-    <div style={{ 
-      ...styles.container, 
+    <div style={{
+      ...styles.container,
       backgroundColor: corFundoBase,
       backgroundImage: `linear-gradient(${gridOpacity} 1px, transparent 1px), linear-gradient(90deg, ${gridOpacity} 1px, transparent 1px)`,
       backgroundSize: '20px 20px',
@@ -297,20 +549,65 @@ function App() {
               <div style={styles.menuItem}><IoPersonOutline color="var(--cor-destaque)" /><input placeholder="Nickname" value={perfil.nickname} onChange={(e) => salvarPerfil({ nickname: e.target.value })} style={{ ...styles.menuInput, color: theme.textMain, backgroundColor: theme.badgeBg }} /></div>
               <div style={styles.menuItem}><IoMailOutline color="var(--cor-destaque)" /><div style={{ display: 'flex', gap: '5px', width: '100%' }}><input placeholder="E-mail" value={novoEmail} onChange={(e) => setNovoEmail(e.target.value)} style={{ ...styles.menuInput, color: theme.textMain, backgroundColor: theme.badgeBg, fontSize: '10px' }} /><button onClick={alterarEmailSessao} style={styles.miniBtn}>OK</button></div></div>
               <div style={styles.menuItem}><IoImageOutline color="var(--cor-destaque)" /><input placeholder="URL Avatar" value={urlFoto} onChange={(e) => { setUrlFoto(e.target.value); salvarPerfil({ avatar: e.target.value || "🌸" }); }} style={{ ...styles.menuInput, color: theme.textMain, backgroundColor: theme.badgeBg }} /></div>
-              <div style={styles.menuItem} onClick={() => salvarPerfil({ modoEscuro: !perfil.modoEscuro })}>{perfil.modoEscuro ? <IoSunnyOutline color="var(--cor-destaque)" /> : <IoMoonOutline color="var(--cor-destaque)" />}<span style={{ color: theme.textMain }}>Modo {perfil.modoEscuro ? "Claro" : "Escuro"}</span></div>
+              <div style={{ ...styles.menuItem, justifyContent: 'space-between', width: '100%' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  {perfil.modoEscuro ? <IoMoonOutline color="var(--cor-destaque)" /> : <IoSunnyOutline color="var(--cor-destaque)" />}
+                  <span style={{ color: theme.textMain }}>Modo Escuro</span>
+                </div>
+
+                {/* O BOTÃO DESLIZANTE (TOGGLE) */}
+                <div
+                  onClick={() => salvarPerfil({ modoEscuro: !perfil.modoEscuro })}
+                  style={{
+                    width: '40px',
+                    height: '20px',
+                    backgroundColor: perfil.modoEscuro ? 'var(--cor-destaque)' : '#ddd',
+                    borderRadius: '20px',
+                    position: 'relative',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '16px',
+                      height: '16px',
+                      backgroundColor: '#fff',
+                      borderRadius: '50%',
+                      position: 'absolute',
+                      top: '2px',
+                      left: perfil.modoEscuro ? '22px' : '2px', // Desliza a bolinha
+                      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)', // Efeito mola
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 2px 4px rgba(0,0,0,0.2)'
+                    }}
+                  >
+                    {perfil.modoEscuro ?
+                      <IoMoonOutline size={10} color="var(--cor-destaque)" /> :
+                      <IoSunnyOutline size={10} color="#f7c948" />
+                    }
+                  </div>
+                </div>
+              </div>
               <hr style={styles.menuDivider} /><div style={{ ...styles.menuItem, color: "#ff4d4d", cursor: 'pointer' }} onClick={() => signOut(auth)}><IoLogOutOutline /><span>Desconectar</span></div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Nav Menu Mobile Ready */}
+      {/* Nav Menu */}
       <div style={styles.navMenu}>
         {categorias.map((cat) => (
           <button
             key={cat.id}
-            onClick={() => { setCategoriaAtiva(cat.id); setBusca(""); setClimaSelecionado(""); }}
-            style={{ ...styles.navButton, backgroundColor: categoriaAtiva === cat.id ? "var(--cor-destaque)" : theme.cardBg, color: categoriaAtiva === cat.id ? "white" : "var(--cor-destaque)", borderColor: "var(--cor-destaque)" }}
+            onClick={() => {
+              setCategoriaAtiva(cat.id);
+              setBusca("");
+              setClimaSelecionado("");
+            }}
+            style={{ ...styles.navButton, backgroundColor: categoriaAtiva === cat.id ? "var(--cor-destaque)" : theme.cardBg, color: categoriaAtiva === cat.id ? "white" : "var(--cor-destaque)", borderColor: "var(--cor-destaque)", transition: "all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)", transform: categoriaAtiva === cat.id ? "scale(1.1)" : "scale(1)", }}
           >
             <span style={styles.navIcon}>{cat.icone}</span> {cat.nome}
           </button>
@@ -320,11 +617,11 @@ function App() {
       <div style={styles.mainContent}>
         {["cachorros", "gatos"].includes(categoriaAtiva) ? (
           <div style={styles.conquistasWrapper}>
-            <div style={{...styles.conquistasHeader, color: "var(--cor-destaque)"}}>
+            <div style={{ ...styles.conquistasHeader, color: "var(--cor-destaque)" }}>
               {categoriaAtiva === "cachorros" ? <PiDog size={40} /> : <PiCat size={40} />}
               <h2>Meus {categoriaAtiva === "cachorros" ? "Cachorros" : "Gatos"}</h2>
               <p>Gerencie seus pets e suas habilidades</p>
-              <button onClick={() => adicionarPet(categoriaAtiva)} style={{...styles.addPetBtn, backgroundColor: "var(--cor-destaque)"}}>
+              <button onClick={() => adicionarPet(categoriaAtiva)} style={{ ...styles.addPetBtn, backgroundColor: "var(--cor-destaque)" }}>
                 <IoAddCircleOutline size={20} /> Adicionar Pet
               </button>
             </div>
@@ -332,34 +629,37 @@ function App() {
               {perfil.pets.filter(p => p.tipo === categoriaAtiva).map(pet => (
                 <div key={pet.id} style={{ ...styles.card, backgroundColor: theme.cardBg, border: `2px solid var(--cor-destaque)` }}>
                   <div style={styles.petHeader}>
-                    <button onClick={() => removerPet(pet.id)} style={styles.removePetBtn}><IoTrashOutline size={14}/></button>
+                    <button onClick={() => removerPet(pet.id)} style={styles.removePetBtn}><IoTrashOutline size={14} /></button>
                   </div>
                   <div style={styles.petAvatarWrapper}>
                     {pet.avatar ? (
                       <img src={pet.avatar} alt="Pet" style={styles.petAvatarImg} />
                     ) : (
-                      <div style={{...styles.petAvatarPlaceholder, color: "var(--cor-destaque)"}}>
+                      <div style={{ ...styles.petAvatarPlaceholder, color: "var(--cor-destaque)" }}>
                         {pet.tipo === "cachorros" ? <PiDog size={40} /> : <PiCat size={40} />}
                       </div>
                     )}
-                    <label style={{...styles.cameraIcon, backgroundColor: "var(--cor-destaque)"}}>
+                    <label style={{ ...styles.cameraIcon, backgroundColor: "var(--cor-destaque)" }}>
                       <IoCameraOutline size={14} color="white" />
                       <input type="file" accept="image/*" onChange={(e) => handlePetImage(pet.id, e)} style={{ display: 'none' }} />
                     </label>
                   </div>
-                  <input 
-                    style={{...styles.petNameInput, color: theme.textMain}} 
-                    value={pet.nome} 
+                  <input
+                    style={{ ...styles.petNameInput, color: theme.textMain }}
+                    value={pet.nome}
                     onChange={(e) => atualizarPet(pet.id, { nome: e.target.value })}
                   />
                   <div style={styles.petSkills}>
-                    <div style={{fontSize: '11px', fontWeight: '800', color: "var(--cor-destaque)", marginBottom: '5px'}}>
+                    <div style={{ fontSize: '11px', fontWeight: '800', color: "var(--cor-destaque)", marginBottom: '5px' }}>
                       HABILIDADE: {pet.estrelas} / 70
                     </div>
-                    <input 
-                      type="range" min="0" max="70" value={pet.estrelas} 
-                      onChange={(e) => atualizarPet(pet.id, { estrelas: parseInt(e.target.value) })}
-                      style={{width: '100%', accentColor: "var(--cor-destaque)"}}
+                    <input
+                      type="range"
+                      min="0"
+                      max="70"
+                      value={pet.estrelas}
+                      onChange={(e) => atualizarPet(pet.id, { estrelas: parseInt(e.target.value) })} // Nome correto
+                      style={{ width: '100%', accentColor: "var(--cor-destaque)" }}
                     />
                   </div>
                 </div>
@@ -368,7 +668,7 @@ function App() {
           </div>
         ) : categoriaAtiva === "conquistas" ? (
           <div style={styles.conquistasWrapper}>
-            <div style={{...styles.conquistasHeader, color: "var(--cor-destaque)"}}>
+            <div style={{ ...styles.conquistasHeader, color: "var(--cor-destaque)" }}>
               <GiTrophy size={40} />
               <h2>Galeria de Troféus</h2>
               <p>Marque suas conquistas alcançadas no jogo!</p>
@@ -377,13 +677,13 @@ function App() {
               {conquistas.map(medalha => {
                 const estaConcluida = perfil.conquistasConcluidas?.includes(medalha.id);
                 return (
-                  <div 
-                    key={medalha.id} 
+                  <div
+                    key={medalha.id}
                     onClick={() => atualizarConquista(medalha.id, !estaConcluida)}
-                    style={{ 
-                      ...styles.medalCard, 
-                      backgroundColor: theme.cardBg, 
-                      border: estaConcluida ? `2px solid ${medalha.cor}` : `2px solid transparent`, 
+                    style={{
+                      ...styles.medalCard,
+                      backgroundColor: theme.cardBg,
+                      border: estaConcluida ? `2px solid ${medalha.cor}` : `2px solid transparent`,
                       opacity: estaConcluida ? 1 : 0.5,
                       cursor: 'pointer',
                       transform: estaConcluida ? 'scale(1.05)' : 'scale(1)',
@@ -398,7 +698,7 @@ function App() {
                       {estaConcluida ? "CONQUISTADO!" : "PENDENTE"}
                     </div>
                     {estaConcluida && (
-                      <div style={{...styles.conquistaCheck, backgroundColor: medalha.cor}}><IoCheckmarkSharp color="white" size={10} /></div>
+                      <div style={{ ...styles.conquistaCheck, backgroundColor: medalha.cor }}><IoCheckmarkSharp color="white" size={10} /></div>
                     )}
                   </div>
                 );
@@ -426,15 +726,82 @@ function App() {
             </div>
 
             <div style={styles.searchAndLevelRow}>
-              <div style={{ ...styles.searchWrapper, backgroundColor: theme.cardBg }}>
+              <div style={{ ...styles.searchWrapper, backgroundColor: theme.cardBg, position: 'relative' }}>
                 <IoSearch style={styles.searchIcon} />
-                <input type="text" placeholder={`Procurar em ${categoriaAtiva}...`} value={busca} onChange={(e) => setBusca(e.target.value)} style={{ ...styles.searchInput, backgroundColor: "transparent", color: theme.textMain, fontFamily: 'Quicksand' }} />
+
+                <input
+                  type="text"
+                  placeholder={`Procurar em ${categoriaAtiva}...`}
+                  value={busca}
+                  onChange={(e) => setBusca(e.target.value)}
+                  style={{
+                    ...styles.searchInput,
+                    backgroundColor: "transparent",
+                    color: theme.textMain,
+                    fontFamily: 'Quicksand',
+                    paddingRight: '35px' // Espaço extra para o botão X
+                  }}
+                />
+
+                {/* Botão de Limpar - Só aparece se houver texto na busca */}
+                {busca && (
+                  <button
+                    onClick={() => setBusca("")}
+                    style={{
+                      position: 'absolute',
+                      right: '10px',
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      color: 'var(--cor-destaque)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: '4px',
+                      transition: 'transform 0.2s ease'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.2)'}
+                    onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    <IoTrashOutline size={16} />
+                    {/* Dica: Se quiser um "X", troque IoTrashOutline por IoCloseCircle (importe do react-icons/io5) */}
+                  </button>
+                )}
               </div>
+
               <div style={{ ...styles.levelControls, backgroundColor: theme.cardBg }}>
                 <span style={styles.levelLabel}>Nível</span>
-                <button onClick={() => setNivelHobby(prev => Math.max(1, prev - 1))} style={styles.levelBtn}>-</button>
+                {/* Botão de Diminuir */}
+                <button
+                  onClick={() => {
+                    const novoNivel = Math.max(1, nivelHobby - 1);
+                    setNivelHobby(novoNivel);
+                    salvarPerfil({ nivelHobby: novoNivel }); // Salva no Firebase
+                  }}
+                  style={styles.levelBtn}
+                >
+                  -
+                </button>
+
                 <div style={styles.levelDisplay}>{nivelHobby}</div>
-                <button onClick={() => setNivelHobby(prev => Math.min(10, prev + 1))} style={styles.levelBtn}>+</button>
+
+                <button
+                  onClick={() => {
+                    const novoNivel = Math.min(14, nivelHobby + 1);
+                    setNivelHobby(novoNivel);
+                    salvarPerfil({ nivelHobby: novoNivel });
+                  }}
+                  // Desativa o botão se o nível for 14 ou maior
+                  disabled={nivelHobby >= 14}
+                  style={{
+                    ...styles.levelBtn,
+                    // Fica meio transparente e muda o cursor se estiver no máximo
+                    opacity: nivelHobby >= 14 ? 0.4 : 1,
+                    cursor: nivelHobby >= 14 ? "not-allowed" : "pointer"
+                  }}
+                >
+                  +
+                </button>
               </div>
             </div>
 
@@ -442,52 +809,43 @@ function App() {
               <button onClick={() => setApenasFaltantes(!apenasFaltantes)} style={{ ...styles.filterBadge, backgroundColor: apenasFaltantes ? "var(--cor-destaque)" : theme.cardBg, color: apenasFaltantes ? "white" : "var(--cor-destaque)", border: `2px solid var(--cor-destaque)` }}>{apenasFaltantes ? <IoCheckmarkSharp /> : <IoSearch />} Faltantes</button>
               <button onClick={() => setApenasFavoritos(!apenasFavoritos)} style={{ ...styles.filterBadge, backgroundColor: apenasFavoritos ? "#ff4375" : theme.cardBg, color: apenasFavoritos ? "white" : "#ff4375", border: `2px solid #ff4375` }}>{apenasFavoritos ? <IoHeart /> : <IoHeartOutline />} Favoritos</button>
               <button onClick={() => setApenasDisponiveisAgora(!apenasDisponiveisAgora)} style={{ ...styles.filterBadge, backgroundColor: apenasDisponiveisAgora ? "var(--cor-destaque)" : theme.cardBg, color: apenasDisponiveisAgora ? "white" : "var(--cor-destaque)", border: `2px solid var(--cor-destaque)` }}><IoTimeOutline /> Agora</button>
-              {["peixes", "aves", "insetos"].includes(categoriaAtiva) && (
-                <div style={{ ...styles.filterBadge, border: `2px solid var(--cor-destaque)`, backgroundColor: theme.cardBg, padding: '0 10px' }}><IoFilterOutline color="var(--cor-destaque)" />
-                  <select value={climaSelecionado} onChange={(e) => setClimaSelecionado(e.target.value)} style={{ ...styles.selectInput, color: "var(--cor-destaque)", backgroundColor: "transparent" }}>
-                    <option value="">Clima</option><option value="sol">Sol</option><option value="chuva">Chuva</option><option value="neve">Neve</option><option value="arco-iris">Arco-íris</option>
-                  </select>
-                </div>
-              )}
+
+              {/* NOVO FILTRO DE ESTRELAS */}
+              <div style={{ ...styles.filterBadge, border: `2px solid #f7c948`, backgroundColor: theme.cardBg, padding: '0 10px' }}>
+                <GiRoundStar color={filtroEstrelas > 0 ? "#f7c948" : "#f7c948"} />
+                <select
+                  value={filtroEstrelas}
+                  onChange={(e) => setFiltroEstrelas(parseInt(e.target.value))}
+                  style={{ ...styles.selectInput, color: "#d4a017", backgroundColor: "transparent" }}
+                >
+                  <option value="0">Estrelas</option>
+                  <option value="1">1 Estrela</option>
+                  <option value="2">2 Estrelas</option>
+                  <option value="3">3 Estrelas</option>
+                  <option value="4">4 Estrelas</option>
+                  <option value="5">5 Estrelas</option>
+                </select>
+              </div>
             </div>
 
+            {/* SEÇÃO NOVA: ITENS DO EVENTO GALA DA NEVE */}
+            {itensDoEvento.length > 0 && !busca && (
+              <div style={styles.eventSection}>
+                <div style={styles.eventHeader}>
+                  <PiSnowflake size={24} color="#2196f3" />
+                  <h2 style={styles.eventTitle}>Gala da Neve</h2>
+                  <div style={styles.eventBadge}>Limitado</div>
+                </div>
+                <div style={styles.grid}>
+                  {itensDoEvento.map(item => renderCard(item))}
+                </div>
+                <div style={styles.sectionDivider} />
+              </div>
+            )}
+
+            {/* GRID PRINCIPAL (ITENS NORMAIS) */}
             <div style={styles.grid}>
-              {itensExibidosNoGrid.map((item) => {
-                const isFav = perfil.favoritos.includes(item.id);
-                return (
-                  <div key={item.id} style={{ ...styles.card, backgroundColor: theme.cardBg, border: item.coletado ? "2px solid var(--cor-destaque)" : isFav ? "2px solid #ff4375" : "2px solid transparent" }}>
-                    <div style={styles.cardHeader}>
-                       <label style={styles.checkboxContainer}><input type="checkbox" checked={item.coletado} onChange={(e) => atualizarItem(item.id, { coletado: e.target.checked, estrelas: e.target.checked ? (item.estrelas || 1) : 0 })} /><span style={{ color: item.coletado ? "var(--cor-destaque)" : "#999", fontWeight: "bold", fontSize: "10px" }}>{item.coletado ? "COLETADO" : "PENDENTE"}</span></label>
-                       <button onClick={() => alternarFavorito(item.id)} style={{...styles.favBtn, color: isFav ? "#ff4375" : "#ddd"}}>
-                         {isFav ? <IoHeart size={20}/> : <IoHeartOutline size={20}/>}
-                       </button>
-                    </div>
-                    <img 
-                      src={`${import.meta.env.BASE_URL.replace(/\/$/, "")}${item.imagem}`} 
-                      alt={item.nome} 
-                      style={{ ...styles.image, filter: item.coletado ? "none" : "grayscale(100%) opacity(0.6)" }} 
-                    />             
-                    <h3 style={{ ...styles.title, color: theme.textMain }}>{item.nome}</h3>
-                    {item.categoria === "jardinagem" && (<div style={styles.infoRow}><MdAttachMoney style={{ color: "var(--cor-destaque)" }} /><span style={styles.infoText}>Semente: <b style={{ color: '#4caf50' }}>{item.precoSemente || "0"}</b></span></div>)}
-                    {["peixes", "aves", "insetos"].includes(item.categoria) && (<><div style={styles.infoRow}><IoLocationSharp style={{ color: "var(--cor-destaque)" }} /><span style={styles.infoText}>{item.local}</span></div><div style={styles.infoRow}><div style={styles.climaContainer}>{item.clima?.map((c, i) => <span key={i}>{renderizarIconeClima(c)}</span>)}</div></div></>)}
-                    {item.categoria === "peixes" && (<div style={styles.infoRow}><div style={{ ...styles.shadowBadge, backgroundColor: item.sombra === "Dourada" ? "#fff9e6" : item.sombra === "Azul" ? "#e6f0ff" : "var(--cor-fundo-sutil)", color: item.sombra === "Dourada" ? "#d4a017" : item.sombra === "Azul" ? "#007bff" : "var(--cor-destaque)" }}>Sombra: {item.sombra || "N/A"}</div></div>)}
-                    {item.categoria !== "iguarias" && (<div style={styles.infoRow}><IoTimeOutline style={{ color: "#888" }} /><span style={styles.infoText}>{item.horario}</span></div>)}
-                    {item.coletado && (
-                      <div style={styles.starContainer} onMouseEnter={() => setHoveredId(item.id)} onMouseLeave={() => setHoveredId(null)}>
-                        {hoveredId === item.id && item.precos && item.precos.length > 0 && (
-                          <div style={{ ...styles.tooltip, backgroundColor: theme.cardBg }}>
-                            {item.precos.map((p, idx) => (
-                              <div key={idx} style={{ ...styles.tooltipLine, borderBottom: `1px solid ${theme.badgeBg}` }}><span style={{ color: '#f7c948' }}>{"⭐".repeat(idx + 1)}</span><span style={{ fontWeight: '700', color: "var(--cor-destaque)" }}>{p.toLocaleString('pt-BR')}</span></div>
-                            ))}
-                            <div style={{ ...styles.tooltipArrow, borderColor: `${theme.cardBg} transparent transparent transparent` }}></div>
-                          </div>
-                        )}
-                        {[1, 2, 3, 4, 5].map((num) => (<GiRoundStar key={num} onClick={() => atualizarItem(item.id, { estrelas: num })} style={{ ...styles.star, color: num <= item.estrelas ? "#f7c948" : "#ddd" }} />))}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              {itensExibidosNoGrid.map((item) => renderCard(item))}
             </div>
           </>
         )}
@@ -496,136 +854,65 @@ function App() {
       <footer style={{ ...styles.ft_container, borderTop: `2px dashed var(--cor-destaque)`, backgroundColor: theme.badgeBg }}>
         <div style={styles.ft_grid}>
           <div style={styles.ft_column}>
-            <div style={{...styles.ft_title, color: "var(--cor-destaque)"}}><IoStatsChartOutline /> Seu Progresso Global</div>
-            <div style={styles.ft_stat_row}><span style={{color: theme.textMain, fontWeight: '700'}}>Conclusão</span><div style={{...styles.ft_bar_bg, backgroundColor: theme.cardBg}}><div style={{...styles.ft_bar_fill, width: `${porcentagemGeral}%`}}></div></div><span style={{color: "var(--cor-destaque)", fontWeight: '800'}}>{porcentagemGeral}%</span></div>
+            <div style={{ ...styles.ft_title, color: "var(--cor-destaque)" }}><IoStatsChartOutline /> Seu Progresso Global</div>
+            <div style={styles.ft_stat_row}><span style={{ color: theme.textMain, fontWeight: '700' }}>Conclusão</span><div style={{ ...styles.ft_bar_bg, backgroundColor: theme.cardBg }}><div style={{ ...styles.ft_bar_fill, width: `${porcentagemGeral}%` }}></div></div><span style={{ color: "var(--cor-destaque)", fontWeight: '800' }}>{porcentagemGeral}%</span></div>
             <p style={styles.ft_description}>Você já registrou <b>{totalColetadoGeral}</b> de <b>{itens.length}</b> itens.</p>
           </div>
-          <div style={styles.ft_column}><div style={{...styles.ft_title, color: "var(--cor-destaque)"}}><IoHeart /> Links Úteis</div><a href="https://heartopia.xd.com/pt/" target="_blank" rel="noreferrer" style={styles.ft_link}><IoGlobeOutline /> Site Oficial</a></div>
-          <div style={styles.ft_column}><div style={{...styles.ft_title, color: "var(--cor-destaque)"}}>Heartopia Guide</div><div style={{...styles.ft_credit_tag, color: theme.textMain}}>Desenvolvido por fãs.</div><p style={styles.ft_disclaimer}>Guia independente. © 2026</p></div>
+          <div style={styles.ft_column}><div style={{ ...styles.ft_title, color: "var(--cor-destaque)" }}><IoHeart /> Links Úteis</div><a href="https://heartopia.xd.com/pt/" target="_blank" rel="noreferrer" style={styles.ft_link}><IoGlobeOutline /> Site Oficial</a></div>
+          <div style={styles.ft_column}><div style={{ ...styles.ft_title, color: "var(--cor-destaque)" }}>Heartopia Guide</div><div style={{ ...styles.ft_credit_tag, color: theme.textMain }}>Desenvolvido por fãs.</div><p style={styles.ft_disclaimer}>Guia independente. © 2026</p></div>
         </div>
       </footer>
+
+      {/* Só aparece se mostrarSubir for true */}
+      {mostrarSubir && (
+        <button
+          onClick={irParaOTopo}
+          style={styles.btnSubirTopo}
+        >
+          <IoArrowUp size={24} />
+        </button>
+      )}
+
+      {/* --- CÓDIGO DO CHAT IA --- */}
+      <div style={stylesIA.chatFloatingBtn} onClick={() => setChatAberto(!chatAberto)}>
+        <IoSparklesOutline />
+      </div>
+
+      {chatAberto && (
+        <div style={stylesIA.chatWindow}>
+          <div style={stylesIA.chatHeader}>
+            <PiButterfly size={20} /> Guia da Natureza
+          </div>
+          <div style={stylesIA.messageArea}>
+            {mensagens.map((m, i) => (
+              <div key={i} style={m.autor === 'user' ? stylesIA.msgUser : stylesIA.msgNPC}>
+                {m.texto}
+              </div>
+            ))}
+
+            <div ref={mensagensEndRef} />
+
+            {carregando && <small style={{ color: '#999', marginLeft: '10px' }}>O Guia está pensando...</small>}
+          </div>
+          <div style={stylesIA.inputArea}>
+            <input
+              style={stylesIA.inputField}
+              value={inputUsuario}
+              onChange={(e) => setInputUsuario(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && enviarPergunta()}
+              placeholder="Pergunte ao Guia..."
+            />
+            <button onClick={enviarPergunta} style={{ border: 'none', background: 'none', color: 'var(--cor-destaque)', cursor: 'pointer' }}>
+              <IoSearch size={24} />
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 const lightTheme = { bg: "#ffe6f2", cardBg: "#fff", textMain: "#333", badgeBg: "#fff0f7" };
 const darkTheme = { bg: "#2d1b24", cardBg: "#3d2b34", textMain: "#fff", badgeBg: "#4d3b44" };
-
-const styles = {
-  container: { padding: "20px 10px 0 10px", minHeight: "100vh", fontFamily: "'Quicksand', sans-serif", transition: "background-color 0.5s ease", boxSizing: 'border-box' },
-  header: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "20px", maxWidth: "1200px", margin: "0 auto 20px auto", width: '100%' },
-  userInfoHeader: { display: "flex", alignItems: "center", gap: "10px" },
-  avatarCircle: { width: "45px", height: "45px", borderRadius: "50%", backgroundColor: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "24px", border: "2px solid #ffb6e6", overflow: "hidden", flexShrink: 0 },
-  avatarImg: { width: "100%", height: "100%", objectFit: "cover" },
-  userNickname: { fontWeight: "800", fontSize: "14px" },
-  userEmail: { color: "var(--cor-destaque)", fontSize: "11px", opacity: 0.8 },
-  settingsBtn: { backgroundColor: "white", border: "2px solid var(--cor-destaque)", width: "38px", height: "38px", borderRadius: "10px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 },
-  dropdownMenu: { position: "absolute", top: "50px", right: "0", borderRadius: "20px", boxShadow: "0 10px 30px rgba(0,0,0,0.2)", border: "2px solid var(--cor-destaque)", padding: "15px", zIndex: 1000, width: "220px" },
-  menuTitle: { fontSize: "12px", fontWeight: "800", color: "var(--cor-destaque)", marginBottom: "10px", textAlign: "center", textTransform: "uppercase" },
-  menuItem: { display: "flex", alignItems: "center", gap: "10px", padding: "8px 0", fontSize: "13px", fontWeight: "600" },
-  menuInput: { border: "none", borderRadius: "10px", padding: "8px 12px", width: "100%", fontFamily: "'Quicksand', sans-serif", fontSize: "12px", outline: "none" },
-  miniBtn: { backgroundColor: "var(--cor-destaque)", color: "white", border: "none", borderRadius: "8px", padding: "5px 10px", cursor: "pointer", fontSize: "10px", fontWeight: "700", fontFamily: "'Quicksand', sans-serif" },
-  menuDivider: { border: "0", borderTop: "1px solid #ffdaed", margin: "10px 0" },
-  
-  // NAVBAR ADAPTADA PARA CELULAR (Scroll Horizontal)
-  navMenu: { 
-    display: "flex", 
-    justifyContent: "flex-start", 
-    gap: "10px", 
-    marginBottom: "25px", 
-    overflowX: "auto", 
-    padding: "10px 5px",
-    whiteSpace: "nowrap",
-    WebkitOverflowScrolling: "touch",
-    scrollbarWidth: "none",
-    msOverflowStyle: "none",
-    maxWidth: "1000px",
-    margin: "0 auto 25px auto"
-  },
-  navButton: { fontFamily: "'Quicksand', sans-serif", display: "flex", alignItems: "center", gap: "8px", padding: "8px 18px", borderRadius: "25px", border: "2px solid", cursor: "pointer", fontWeight: "700", transition: "all 0.3s", flexShrink: 0 },
-  navIcon: { fontSize: "18px" },
-  
-  mainContent: { maxWidth: "1160px", margin: "0 auto", minHeight: "60vh", width: '100%' },
-  
-  // PROGRESSO ADAPTADO
-  progressContainer: { width: "100%", padding: "20px 15px 40px 15px", borderRadius: "20px", border: "2px solid var(--cor-destaque)", marginBottom: "30px", boxSizing: "border-box" },
-  progressHeader: { display: "flex", marginBottom: "15px" },
-  starBadge: { display: "flex", alignItems: "center", gap: "8px", padding: "6px 15px", borderRadius: "20px" },
-  progressText: { color: "var(--cor-destaque)", fontWeight: "800", fontSize: "11px" },
-  progressBarBg: { height: "14px", borderRadius: "12px", position: "relative", display: "flex", alignItems: "center", margin: "0 5px", border: "3px solid var(--cor-fundo-sutil)" },
-  progressBarFill: { height: "100%", backgroundColor: "var(--cor-destaque)", borderRadius: "10px", transition: "width 0.5s" },
-  marker: { position: "absolute", width: "14px", height: "14px", borderRadius: "50%", transform: "translateX(-50%)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 },
-  markerLabel: { position: "absolute", top: "22px", color: "var(--cor-destaque)", fontSize: "9px", fontWeight: "700" },
-  
-  // BUSCA E FILTROS ADAPTADOS
-  searchAndLevelRow: { display: "flex", justifyContent: "space-between", alignItems: "center", gap: "10px", marginBottom: "20px", flexWrap: "wrap" },
-  searchWrapper: { display: "flex", alignItems: "center", padding: "8px 15px", borderRadius: "50px", border: "2px solid var(--cor-destaque)", flex: 2, minWidth: "180px" },
-  searchInput: { border: "none", outline: "none", width: "100%", fontSize: "14px", fontFamily: "'Quicksand', sans-serif" },
-  searchIcon: { color: "var(--cor-destaque)", marginRight: "8px" },
-  levelControls: { display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "30px", border: "2px solid var(--cor-destaque)", flexShrink: 0 },
-  levelLabel: { color: "var(--cor-destaque)", fontWeight: "700", fontSize: "11px" },
-  levelBtn: { backgroundColor: "var(--cor-destaque)", color: "white", border: "none", width: "22px", height: "22px", borderRadius: "50%", cursor: "pointer", fontWeight: "bold" },
-  levelDisplay: { fontSize: "16px", fontWeight: "800", color: "var(--cor-destaque)", minWidth: "15px", textAlign: "center" },
-  filterRow: { display: "flex", gap: "8px", marginBottom: "20px", flexWrap: "wrap", justifyContent: "center" },
-  filterBadge: { display: "flex", alignItems: "center", gap: "6px", padding: "6px 12px", borderRadius: "20px", cursor: "pointer", fontSize: "11px", fontWeight: "700", fontFamily: "'Quicksand', sans-serif", transition: "all 0.2s ease", flexShrink: 0 },
-  selectInput: { border: 'none', outline: 'none', fontFamily: "'Quicksand', sans-serif", fontWeight: '700', fontSize: '11px', cursor: 'pointer' },
-  
-  // GRID RESPONSIVO (2 colunas no celular, várias no PC)
-  grid: { 
-    display: "grid", 
-    gridTemplateColumns: "repeat(auto-fill, minmax(160px, 1fr))", 
-    justifyContent: "center", 
-    gap: "15px", 
-    width: "100%",
-    padding: "0 5px",
-    boxSizing: "border-box"
-  },
-  card: { padding: "12px", borderRadius: "20px", boxSizing: "border-box", textAlign: "center", boxShadow: "0 5px 15px rgba(0,0,0,0.05)", display: "flex", flexDirection: "column", transition: 'border-color 0.3s', position: 'relative' },
-  cardHeader: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' },
-  favBtn: { background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', transition: 'transform 0.2s' },
-  checkboxContainer: { display: "flex", alignItems: "center", justifyContent: "center", gap: "4px" },
-  image: { width: "100%", height: "110px", objectFit: "cover", borderRadius: "15px", marginBottom: "8px" },
-  title: { fontWeight: "700", fontSize: "14px", height: "35px", overflow: "hidden", marginBottom: '5px' },
-  infoRow: { display: "flex", justifyContent: "center", alignItems: "center", gap: "4px", marginBottom: "4px", fontSize: "11px" },
-  infoText: { color: "#777", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" },
-  shadowBadge: { padding: "2px 8px", borderRadius: "10px", fontSize: "9px", fontWeight: "800", textTransform: "uppercase" },
-  climaContainer: { display: "flex", gap: "3px" },
-  starContainer: { display: "flex", justifyContent: "center", marginTop: "10px", padding: "8px 0", borderTop: "1.5px dashed var(--cor-fundo-sutil)", gap: "1px", position: "relative" },
-  star: { fontSize: "18px", cursor: "pointer" },
-  tooltip: { position: "absolute", bottom: "130%", left: "50%", transform: "translateX(-50%)", padding: "10px", borderRadius: "15px", border: "2px solid var(--cor-destaque)", zIndex: 100, width: "140px" },
-  tooltipLine: { display: "flex", justifyContent: "space-between", fontSize: "11px", marginBottom: "3px" },
-  tooltipArrow: { position: "absolute", top: "100%", left: "50%", marginLeft: "-8px", borderWidth: "8px", borderStyle: "solid" },
-  
-  loading: { display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" },
-  
-  // FOOTER RESPONSIVO
-  ft_container: { marginTop: "60px", padding: "40px 15px", transition: 'border-color 0.3s' },
-  ft_grid: { maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "30px" },
-  ft_column: { display: "flex", flexDirection: "column", gap: "12px" },
-  ft_title: { fontSize: "14px", fontWeight: "800", display: "flex", alignItems: "center", gap: "8px", textTransform: "uppercase" },
-  ft_stat_row: { display: "flex", alignItems: "center", gap: "8px", fontSize: "12px" },
-  ft_bar_bg: { flex: 1, height: "8px", borderRadius: "10px", overflow: "hidden", border: '2px solid var(--cor-fundo-sutil)' },
-  ft_bar_fill: { height: "100%", background: "var(--cor-destaque)", borderRadius: "10px" },
-  ft_description: { fontSize: "11px", opacity: 0.7, lineHeight: "1.5", color: '#666' },
-  ft_link: { color: "var(--cor-destaque)", textDecoration: "none", fontSize: "13px", fontWeight: "700", display: "flex", alignItems: "center", gap: "8px" },
-  ft_disclaimer: { fontSize: "10px", color: "#999", fontStyle: "italic" },
-  ft_credit_tag: { fontSize: "13px", fontWeight: "800" },
-  
-  conquistasWrapper: { padding: '10px', textAlign: 'center' },
-  conquistasHeader: { marginBottom: '30px' },
-  medalGrid: { display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(140px, 1fr))", gap: "15px", maxWidth: "1000px", margin: "0 auto" },
-  medalCard: { padding: '15px', borderRadius: '20px', textAlign: 'center', position: 'relative', transition: 'all 0.3s ease' },
-  medalIconCircle: { width: '60px', height: '60px', borderRadius: '50%', margin: '0 auto 8px auto', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  conquistaCheck: { position: 'absolute', top: '8px', right: '8px', width: '18px', height: '18px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' },
-  addPetBtn: { border: 'none', padding: '8px 16px', borderRadius: '20px', color: 'white', fontWeight: '800', cursor: 'pointer', marginTop: '12px', display: 'inline-flex', alignItems: 'center', gap: '8px', fontFamily: 'Quicksand', fontSize: '12px' },
-  petHeader: { display: 'flex', justifyContent: 'flex-end', marginBottom: '8px' },
-  removePetBtn: { background: 'none', border: 'none', color: '#ff4d4d', cursor: 'pointer', padding: '5px' },
-  petAvatarWrapper: { position: 'relative', width: '80px', height: '80px', margin: '0 auto 12px auto' },
-  petAvatarImg: { width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover', border: '3px solid var(--cor-destaque)' },
-  petAvatarPlaceholder: { width: '100%', height: '100%', borderRadius: '50%', backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '3px solid #ddd' },
-  cameraIcon: { position: 'absolute', bottom: '0', right: '0', padding: '5px', borderRadius: '50%', cursor: 'pointer', boxShadow: '0 2px 5px rgba(0,0,0,0.2)', display: 'flex' },
-  petNameInput: { border: 'none', background: 'transparent', textAlign: 'center', fontWeight: '800', fontSize: '16px', width: '100%', outline: 'none', marginBottom: '12px', fontFamily: 'Quicksand' },
-  petSkills: { borderTop: '1px dashed #ddd', paddingTop: '12px' }
-};
 
 export default App;

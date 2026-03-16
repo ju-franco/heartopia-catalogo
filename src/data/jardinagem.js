@@ -262,8 +262,7 @@ export const jardinagem = [
     coletado: false,
     estrelas: 0,
     precos: []
-  }
-  /*
+  },
   {
     id: 322,
     nome: "Rosa",
@@ -275,7 +274,7 @@ export const jardinagem = [
     coletado: false,
     estrelas: 0,
     precos: []
-  },
+  }, /*
   {
     id: 323,
     nome: "Jacinto",
@@ -312,4 +311,26 @@ export const jardinagem = [
     estrelas: 0,
     precos: []
   }*/
+  {
+    id: 323,
+    nome: "Nabo",
+    categoria: "jardinagem",
+    imagem: "/imagens/jardinagem/nabo.jpg",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+  },
+  {
+    id: 324,
+    nome: "Papoula-Himalaia",
+    categoria: "jardinagem",
+    imagem: "/imagens/jardinagem/papoula-himalaia.jpg",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Gala da Neve"
+  } 
 ];

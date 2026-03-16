@@ -10,6 +10,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
+    precos: []
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 3,
@@ -33,7 +35,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 4,
@@ -45,7 +48,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 5,
@@ -57,7 +61,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 6,
@@ -69,7 +74,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 7,
@@ -81,7 +87,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 8,
@@ -93,7 +100,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 9,
@@ -105,7 +113,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 10,
@@ -118,7 +127,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
-    precos: [15, 60, 120, 240, 480]
+    precos: []
   },
   {
     id: 11,
@@ -131,7 +140,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
-    precos: [10,40, 80, 10, 320]
+    precos: []
   },
   {
     id: 12,
@@ -143,7 +152,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 13,
@@ -156,7 +166,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
-    precos: [2, 8, 16, 32, 64]
+    precos: []
   },
   {
     id: 14,
@@ -168,7 +178,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 15,
@@ -181,7 +192,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
-    precos: [100, 40, 80, 160, 320]
+    precos: []
   },
   {
     id: 16,
@@ -193,7 +204,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 17,
@@ -205,7 +217,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 18,
@@ -217,7 +230,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 19,
@@ -229,7 +243,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 20,
@@ -241,7 +256,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 21,
@@ -253,7 +269,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 22,
@@ -265,7 +282,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 23,
@@ -277,7 +295,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 24,
@@ -289,7 +308,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   }, 
   {
     id: 25,
@@ -301,7 +321,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 26,
@@ -313,7 +334,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 27,
@@ -325,7 +347,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 28,
@@ -337,7 +360,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 29,
@@ -350,7 +374,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
-    precos: [15, 60, 120, 240, 480]
+    precos: []
   },
   {
     id: 30,
@@ -362,7 +386,8 @@ export const aves = [
     clima: ["Ensolarado", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 31,
@@ -374,7 +399,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 32,
@@ -386,7 +412,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 33,
@@ -398,7 +425,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 34,
@@ -410,7 +438,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 35,
@@ -422,7 +451,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 36,
@@ -434,7 +464,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 37,
@@ -447,7 +478,7 @@ export const aves = [
     horario: "Qualquer Horário",
     coletado: false,
     estrelas: 0,
-    precos: [22, 90, 180, 360, 720]
+    precos: []
   },
   {
     id: 38,
@@ -459,7 +490,8 @@ export const aves = [
     clima: ["Ensolarado", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 39,
@@ -471,7 +503,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 40,
@@ -483,7 +516,8 @@ export const aves = [
     clima: ["Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 41,
@@ -495,7 +529,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 42,
@@ -507,7 +542,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 43,
@@ -519,7 +555,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horári",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 44,
@@ -531,7 +568,8 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
   },
   {
     id: 45,
@@ -543,6 +581,190 @@ export const aves = [
     clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
     horario: "Qualquer Horário",
     coletado: false,
-    estrelas: 0
+    estrelas: 0,
+    precos: []
+  },
+  {
+    id: 46,
+    nome: "Chapim-azul",
+    categoria: "aves",
+    imagem: "/imagens/aves/chapim-azul.jpg",
+    nivelNecessario: 7,
+    local: "Campo Floral - Moinho de Vento Floral",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  },
+  {
+    id: 47,
+    nome: "Arara-azul-de-lear",
+    categoria: "aves",
+    imagem: "/imagens/aves/arara-azul-de-lear.jpg",
+    nivelNecessario: 7,
+    local: "Evento de Revoada ao Ninho",
+    clima: ["Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  },
+  {
+    id: 48,
+    nome: "Pombo-da-fruta-jambu",
+    categoria: "aves",
+    imagem: "/imagens/aves/pombo-da-fruta-jambu.jpg",
+    nivelNecessario: 7,
+    local: "Subúrbio",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  },  
+  {
+    id: 49,
+    nome: "Gaivina",
+    categoria: "aves",
+    imagem: "/imagens/aves/gaivina.jpg",
+    nivelNecessario: 7,
+    local: "Beira-mar do Mar Leste",
+    clima: ["Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  },  
+  {
+    id: 50,
+    nome: "Peneireiro-eurasiático",
+    categoria: "aves",
+    imagem: "/imagens/aves/peneireiro-eurasiatico.jpg",
+    nivelNecessario: 7,
+    local: "Floresta - Torre do Cervo",
+    clima: ["Ensolarado", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  }, 
+  ////////////// Gala da Neve
+  {
+    id: 51,
+    nome: "Flamingo-grande com Roupa de Inverno",
+    categoria: "aves",
+    imagem: "/imagens/aves/flamingo-grande-com-roupa-de-inverno.jpg",
+    nivelNecessario: 1,
+    local: "Beira  do Lago Suburbano",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    evento: "Gala da Neve"
+  },  
+  {
+    id: 52,
+    nome: "Pato-real com Roupa de Inverno",
+    categoria: "aves",
+    imagem: "/imagens/aves/pato-real-com-roupa-de-inverno.jpg",
+    nivelNecessario: 1,
+    local: "Lago Suburbano",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    evento: "Gala da Neve"
+  },  
+  {
+    id: 53,
+    nome: "Pato-branco com Roupa de Inverno",
+    categoria: "aves",
+    imagem: "/imagens/aves/pato-branco-com-roupa-de-inverno.jpg",
+    nivelNecessario: 1,
+    local: "Lago Suburbano",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    evento: "Gala da Neve"
+  },  
+  {
+    id: 54,
+    nome: "Pato-pescoço-vermelho com Roupa de Inverno",
+    categoria: "aves",
+    imagem: "/imagens/aves/pato-pescoco-vermelho-com-roupa-de-inverno.jpg",
+    nivelNecessario: 1,
+    local: "Lago Suburbano",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    evento: "Gala da Neve"
+  },  
+  {
+    id: 55,
+    nome: "Marreco-mandarim com Roupa de Inverno",
+    categoria: "aves",
+    imagem: "/imagens/aves/marreco-mandarim-com-roupa-de-inverno.jpg",
+    nivelNecessario: 1,
+    local: "Evento de Recolha Invernal",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    evento: "Gala da Neve"
+  }, ///////////////
+  {
+    id: 56,
+    nome: "Pássaro Azul Oriental",
+    categoria: "aves",
+    imagem: "/imagens/aves/passaro-azul-oriental.jpg",
+    nivelNecessario: 8,
+    local: "Subúrbio",
+    clima: ["Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  }, 
+  {
+    id: 57,
+    nome: "Pintarroxo-de-queixo-preto",
+    categoria: "aves",
+    imagem: "/imagens/aves/pintarroxo-de-queixo-preto.jpg",
+    nivelNecessario: 8,
+    local: "Floresta - Bosque de Carvalhos Espirituais",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  }, 
+  {
+    id: 58,
+    nome: "Pomba Rosa",
+    categoria: "aves",
+    imagem: "/imagens/aves/pomba-rosa.jpg",
+    nivelNecessario: 8,
+    local: "Campo Floral - Montanha da Baleia",
+    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
+  }, 
+  {
+    id: 59,
+    nome: "Falcão Peregrino",
+    categoria: "aves",
+    imagem: "/imagens/aves/falcao-peregrino.jpg",
+    nivelNecessario: 8,
+    local: "",
+    clima: ["Chuva", "Neve", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    coletado: false,
+    estrelas: 0,
+    precos: []
   }
 ];
