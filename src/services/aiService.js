@@ -1,7 +1,9 @@
 import Groq from "groq-sdk";
 
+const apiKey = import.meta.env.VITE_GROQ_API_KEY || localStorage.getItem('minha_chave_groq');
+
 const groq = new Groq({
-  apiKey: import.meta.env.VITE_GROQ_API_KEY,
+  apiKey: apiKey,
   dangerouslyAllowBrowser: true
 });
 
