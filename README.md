@@ -1,20 +1,31 @@
-HEAD
-# React + Vite
+# 🌸 Heartopia - Catálogo Interativo
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🚀 Funcionalidades Principais
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **📖 Catálogo Completo:** Listagem detalhada de Aves, Peixes e itens coletáveis.
+* **📊 Sistema de Progresso:** Barras de conclusão dinâmicas para cada categoria de itens.
+* **🎖️ Selos de Nível:** Identificação visual do nível de raridade ou maestria do item (com layout centralizado e responsivo).
+* **🤖 Guia da Natureza (IA):** Um chat integrado que utiliza a API da **Groq** para responder dúvidas sobre o ecossistema do jogo.
+* **💾 Sincronização Cloud:** Integração com **Firebase** para persistência de dados.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tecnologias Utilizadas
 
-## Expanding the ESLint configuration
+Este projeto foi construído utilizando as ferramentas mais modernas de desenvolvimento web:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# heartopia-catalogo
->>>>>>> 3bbccea522bca04fe62b7030c8182fba45ec81dd
+* [React.js](https://reactjs.org/) - Biblioteca para a interface.
+* [Vite](https://vitejs.dev/) - Build tool ultra-rápido.
+* [Groq Cloud SDK](https://groq.com/) - Inteligência Artificial de baixa latência.
+* [Firebase](https://firebase.google.com/) - Banco de dados e hospedagem.
+* [GitHub Pages](https://pages.github.com/) - Deploy e hospedagem estática.
+
+---
+
+## 📦 Como Instalar e Rodar
+
+1. **Clone o repositório:**
+   ```bash
+   git clone [https://github.com/seu-usuario/heartopia-catalogo.git](https://github.com/seu-usuario/heartopia-catalogo.git)
