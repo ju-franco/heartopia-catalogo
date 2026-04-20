@@ -1,31 +1,62 @@
-# 🌸 Heartopia - Catálogo Interativo
+# 🌸 `Heartopia: Catálogo e Guia Interativo (WEB)`
+
+<img src="public/imagens/logo-heartopia.png" alt="Logo Heartopia" width="250px"/>
+
+> **Protótipo Independente de Estudo**: Desenvolvido para fins de aprendizado e aprimoramento técnico.
+
+Este repositório contém o código-fonte da **plataforma web fanmade de catálogo e guia do jogo Heartopia**. Desenvolvida com React e Vite, a aplicação oferece um catálogo interativo de itens do jogo, com sistema de progresso, integração com inteligência artificial e persistência em nuvem.
 
 ---
 
-## 🚀 Funcionalidades Principais
+## 💡 `Sobre o Projeto`
 
-* **📖 Catálogo Completo:** Listagem detalhada de Aves, Peixes e itens coletáveis.
-* **📊 Sistema de Progresso:** Barras de conclusão dinâmicas para cada categoria de itens.
-* **🎖️ Selos de Nível:** Identificação visual do nível de raridade ou maestria do item (com layout centralizado e responsivo).
-* **🤖 Guia da Natureza (IA):** Um chat integrado que utiliza a API da **Groq** para responder dúvidas sobre o ecossistema do jogo.
-* **💾 Sincronização Cloud:** Integração com **Firebase** para persistência de dados.
+O projeto foi desenvolvido como um projeto de estudo com foco em aplicar conceitos modernos de desenvolvimento web, criando uma experiência interativa e visualmente agradável para acompanhar colecionáveis dentro de um jogo.
 
----
+Neste projeto, o foco foi:
 
-## 🛠️ Tecnologias Utilizadas
-
-Este projeto foi construído utilizando as ferramentas mais modernas de desenvolvimento web:
-
-* [React.js](https://reactjs.org/) - Biblioteca para a interface.
-* [Vite](https://vitejs.dev/) - Build tool ultra-rápido.
-* [Groq Cloud SDK](https://groq.com/) - Inteligência Artificial de baixa latência.
-* [Firebase](https://firebase.google.com/) - Banco de dados e hospedagem.
-* [GitHub Pages](https://pages.github.com/) - Deploy e hospedagem estática.
+* **Experiência do Usuário:** Interface intuitiva e responsiva.
+* **Visualização de Progresso:** Barras dinâmicas para acompanhamento de coleção.
+* **Integração com IA:** Sistema de chat inteligente para auxiliar o usuário.
+* **Persistência de Dados:** Salvamento e sincronização em nuvem.
 
 ---
 
-## 📦 Como Instalar e Rodar
+## 💻 `Telas Principais`
 
-1. **Clone o repositório:**
-   ```bash
-   git clone [https://github.com/seu-usuario/heartopia-catalogo.git](https://github.com/seu-usuario/heartopia-catalogo.git)
+| Catálogo de Itens | Sistema de Progresso |
+| :---: | :---: |
+| <img src="public/catalogo.png" width="500"/> | <img src="public/progresso.png" width="500"/> |
+
+| Chat IA (Guia da Natureza) | Visualização de Itens |
+| :---: | :---: |
+| <img src="public/chat.png" width="500"/> | <img src="public/itens.png" width="500"/> |
+
+---
+
+## 🛠️ `Stack Tecnológica`
+
+| Camada | Tecnologia | Descrição |
+| :--- | :--- | :--- |
+| **Interface Web** | React.js | Biblioteca para construção de interfaces reativas |
+| **Build Tool** | Vite | Ferramenta moderna e rápida para desenvolvimento |
+| **Inteligência Artificial** | Groq API | Respostas rápidas e inteligentes no chat |
+| **Backend / DB** | Firebase | Persistência de dados em tempo real |
+| **Deploy** | GitHub Pages | Hospedagem estática da aplicação |
+
+---
+
+## 🔔 `Funcionalidades Implementadas`
+
+| Funcionalidade | Descrição |
+| :--- | :--- |
+| **Catálogo Completo** | Listagem detalhada de aves, peixes e colecionáveis |
+| **Sistema de Progresso** | Barras dinâmicas de conclusão por categoria |
+| **Selos de Nível** | Identificação visual de raridade dos itens |
+| **Guia da Natureza (IA)** | Chat inteligente integrado |
+| **Sincronização Cloud** | Salvamento automático com Firebase |
+
+---
+
+## 👤 `Desenvolvedora`
+
+* **Julia Franco**
