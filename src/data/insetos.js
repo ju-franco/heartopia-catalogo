@@ -5,25 +5,25 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-cauda-de-andorinha.jpg",
     local: "Floresta",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
-  },    
+    precos: [],
+  },
   {
     id: 101,
     nome: "Borboleta-de-ponta-laranja",
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-de-ponta-laranja.jpg",
     local: "Centro da Vila",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 102,
@@ -31,12 +31,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-limao.jpg",
     local: "Subúrbio",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 103,
@@ -44,12 +44,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-da-couve.jpg",
     local: "Vila dos Pescadores",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 104,
@@ -57,12 +57,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-apolo.jpg",
     local: "Evento Atrair Insetos",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 105,
@@ -70,12 +70,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/rabo-de-andorinha-vermelha.jpg",
     local: "Evento Atrair Insetos",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 106,
@@ -83,12 +83,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/morpho-perola.jpg",
     local: "Produto Local - Atrativo de Abelha Inflável",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 107,
@@ -96,12 +96,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/besouro-do-aspargo.jpg",
     local: "Campo Floral",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 108,
@@ -109,25 +109,25 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/gafanhoto-oasis.jpg",
     local: "Monte Termal",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
-    {
+  {
     id: 109,
     nome: "Percevejo Carmesim",
     categoria: "insetos",
     imagem: "/imagens/insetos/percevejo-carmesim.jpg",
     local: "Lar",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 110,
@@ -135,12 +135,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/donzelinha-vermelha-grande.jpg",
     local: "Beira d'Água",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 111,
@@ -148,12 +148,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-azul-cinza.jpg",
     local: "Centro da Vila",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 112,
@@ -161,25 +161,25 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/besouro-tigre-verde.jpg",
     local: "Monte Termal",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
-  }, 
+    precos: [],
+  },
   {
     id: 113,
     nome: "Serra-pau-de-faixa-amarela",
     categoria: "insetos",
     imagem: "/imagens/insetos/serra-pau-de-faixa-amarela.jpg",
     local: "Floresta",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 114,
@@ -187,12 +187,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/escaravelho-da-flor-roxo.jpg",
     local: "Lar",
-    clima: ["Chuva", "Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 115,
@@ -200,12 +200,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/gafanhoto-de-pernas-grossas.jpg",
     local: "Vila dos Pescadores",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 116,
@@ -213,12 +213,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/joaninha-dos-7-pontos.jpg",
     local: "Subúrbio",
-    clima: ["Chuva","Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 117,
@@ -231,7 +231,7 @@ export const insetos = [
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 118,
@@ -239,12 +239,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/mamangava.jpg",
     local: "Campo Floral",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 2,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 119,
@@ -257,7 +257,7 @@ export const insetos = [
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 120,
@@ -265,12 +265,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/rabo-de-andorinha-raja.jpg",
     local: "Lar",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "18:00 - 12:00",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 121,
@@ -283,7 +283,7 @@ export const insetos = [
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 122,
@@ -291,12 +291,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/besouro-cardinal.jpg",
     local: "Monte Termal - Fonte Termal",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 123,
@@ -304,12 +304,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/grilho-do-mato-rosa.jpg",
     local: "Evento Atrair Insetos",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 124,
@@ -317,25 +317,25 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/gafanhoto-cantor.jpg",
     local: "Campo Floral - Praia de Brilho Roxo",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
- {
+  {
     id: 125,
     nome: "Vespa-de-rabo-pintado",
     categoria: "insetos",
     imagem: "/imagens/insetos/vespa-de-rabo-pintado.jpg",
     local: "Floresta - Torre do Cervo",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "06:00 - 00:00",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 126,
@@ -343,12 +343,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/formiga.jpg",
     local: "Praça da Vila dos Pescadores",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 3,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 127,
@@ -361,7 +361,7 @@ export const insetos = [
     nivelNecessario: 4,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 128,
@@ -374,7 +374,7 @@ export const insetos = [
     nivelNecessario: 4,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 129,
@@ -382,12 +382,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/joaninha-dos-4-pontos.jpg",
     local: "Monte Termal - Lago Vulcânico",
-    clima: ["Chuva", "Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 4,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 130,
@@ -395,12 +395,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/cigarra.jpg",
     local: "Floresta - Bosque de Carvalhos Espirituais",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "12:00 - 06:00",
     nivelNecessario: 4,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 131,
@@ -408,12 +408,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/libelula-branca.jpg",
     local: "Margem de Rio",
-    clima: ["Chuva", "Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 4,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 132,
@@ -426,20 +426,20 @@ export const insetos = [
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
- {
+  {
     id: 133,
     nome: "Borboleta-pavão",
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-pavao.jpg",
     local: "Campo Floral - Moinho de Vento Floral",
-    clima: ["Enrolarado", "Chuva", "Neve", "Arco-íris"],
+    clima: ["Enrolarado", "Chuva", "Arco-íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 134,
@@ -452,7 +452,7 @@ export const insetos = [
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 135,
@@ -465,7 +465,7 @@ export const insetos = [
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 136,
@@ -478,7 +478,7 @@ export const insetos = [
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 137,
@@ -486,12 +486,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/joaninha-exotica.jpg",
     local: "Floresta - Torre do Cervo",
-    clima: ["Chuva", "Neve", "Arco-íris"],
+    clima: ["Chuva", "Arco-íris"],
     horario: "12:00 - 06:00",
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 138,
@@ -504,7 +504,7 @@ export const insetos = [
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 139,
@@ -517,7 +517,7 @@ export const insetos = [
     nivelNecessario: 5,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 140,
@@ -525,12 +525,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/rabo-de-andorinha-verde.jpg",
     local: "Subúrbio",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "18:00 - 06:00",
     nivelNecessario: 6,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 141,
@@ -538,12 +538,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/vaca-loura.jpg",
     local: "Floresta - Pularim",
-    clima: ["Chuva", "Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "06:00 - 00:00",
     nivelNecessario: 6,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 142,
@@ -556,7 +556,7 @@ export const insetos = [
     nivelNecessario: 6,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 143,
@@ -564,12 +564,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/percevejo-azul.jpg",
     local: "Vila dos Pescadores- Farol",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "06:00 - 18:00",
     nivelNecessario: 6,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 144,
@@ -577,12 +577,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/donzelinha-azul.jpg",
     local: "Beira do Lago do Lago Florestal",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "06:00 - 00:00",
     nivelNecessario: 6,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 145,
@@ -595,7 +595,7 @@ export const insetos = [
     nivelNecessario: 7,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 146,
@@ -603,12 +603,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/parantica-sita.jpg",
     local: "Evento Atrair Insetos",
-    clima: ["Chuva", "Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 7,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 147,
@@ -616,12 +616,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/rola-bosta.jpg",
     local: "Monte Termal - Ruínas",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "00:00 - 18:00",
     nivelNecessario: 7,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 148,
@@ -629,12 +629,12 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/escaravelho-da-flor-bonito.jpg",
     local: "Evento Atrair Insetos",
-    clima: ["Chuva", "Neve", "Arco-Íris"],
+    clima: ["Chuva", "Arco-Íris"],
     horario: "06:00 - 18:00",
     nivelNecessario: 7,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 149,
@@ -647,7 +647,7 @@ export const insetos = [
     nivelNecessario: 7,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 150,
@@ -660,7 +660,7 @@ export const insetos = [
     nivelNecessario: 7,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   ////////////////// Gala da Neve
   {
@@ -669,13 +669,13 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-madre-perola-cristalina.jpg",
     local: "Floresta - Pularim",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
     precos: [],
-    evento: "Gala da Neve"
+    evento: "Gala da Neve",
   },
   {
     id: 152,
@@ -683,13 +683,13 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/graphium-rosa-cristalino.jpg",
     local: "Floresta - Bosque de Carvalhos Espirituais",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
     precos: [],
-    evento: "Gala da Neve"
+    evento: "Gala da Neve",
   },
   {
     id: 153,
@@ -697,13 +697,13 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-rainha-alexandra-cristalina.jpg",
     local: "Floresta - Torre do Cervo",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
     precos: [],
-    evento: "Gala da Neve"
+    evento: "Gala da Neve",
   },
   {
     id: 154,
@@ -711,13 +711,13 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/morpho-perola-cristalino.jpg",
     local: "Floresta - Torre do Cervo",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
     precos: [],
-    evento: "Gala da Neve"
+    evento: "Gala da Neve",
   },
   {
     id: 155,
@@ -725,13 +725,13 @@ export const insetos = [
     categoria: "insetos",
     imagem: "/imagens/insetos/borboleta-carteiro-cristalina.jpg",
     local: "Evento de Borboleta Cristalina",
-    clima: ["Ensolarado", "Chuva", "Neve", "Arco-Íris"],
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
     horario: "Qualquer Horário",
     nivelNecessario: 1,
     coletado: false,
     estrelas: 0,
     precos: [],
-    evento: "Gala da Neve"
+    evento: "Gala da Neve",
   }, //////////////
   {
     id: 156,
@@ -744,7 +744,7 @@ export const insetos = [
     nivelNecessario: 8,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 157,
@@ -757,7 +757,7 @@ export const insetos = [
     nivelNecessario: 8,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 158,
@@ -770,7 +770,7 @@ export const insetos = [
     nivelNecessario: 8,
     coletado: false,
     estrelas: 0,
-    precos: []
+    precos: [],
   },
   {
     id: 159,
@@ -783,6 +783,193 @@ export const insetos = [
     nivelNecessario: 8,
     coletado: false,
     estrelas: 0,
-    precos: []
-  }
+    precos: [],
+  }, ///////////////////
+  {
+    id: 160,
+    nome: "Mamangava Continuísta Rosa",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/mamangava-continuista-rosa.jpg",
+    local: "Campo Floral - Moinho de Vento Floral",
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
+    horario: "Qulaquer Horário",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica",
+  },
+  {
+    id: 161,
+    nome: "Mamangava Continuísta Vermelha",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/mamangava-continuista-vermelha.jpg",
+    local: "Campo Floral - Montanha da Baleia",
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
+    horario: "Qulaquer Horário",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica",
+  },
+  {
+    id: 162,
+    nome: "Mamangava Continuísta Verde",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/mamangava-continuista-verde.jpg",
+    local: "Campo Floral - Praia do Brilho Roxo",
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
+    horario: "Qulaquer Horário",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica",
+  },
+  {
+    id: 163,
+    nome: "Mamangava Continuísta Roxa",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/mamangava-continuista-roxa.jpg",
+    local: "Campo Floral - Moinho de Vento Floral",
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
+    horario: "Qulaquer Horário",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica",
+  },
+  {
+    id: 164,
+    nome: "Mamangava Continuísta Dourada",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/mamangava-continuista-dourada.jpg",
+    local: "",
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
+    horario: "Qulaquer Horário",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica",
+  }, //////////////////
+  {
+    id: 165,
+    nome: "Borboleta-madre-pérola",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/borboleta-madre-perola.jpg",
+    local: "Campo Floral - Moinho de Vento Floral",
+    clima: ["Chuva", "Arco-Íris"],
+    horario: "00:00 - 12:00",
+    nivelNecessario: 9,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+  },
+  {
+    id: 166,
+    nome: "Lucano Dourado",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/lucano-dourado.jpg",
+    local: "Floresta - Bosque de Carvalhos Espirituais",
+    clima: ["Chuva", "Arco-Íris"],
+    horario: "18:00 - 06:00",
+    nivelNecessario: 9,
+    coletado: false,
+    estrelas: 0,
+    precos: [440],
+  },
+  {
+    id: 167,
+    nome: "Besouro Arco-íris",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/besouro-arco-iris.jpg",
+    local: "Evento Atrair Insetos",
+    clima: ["Ensolarado", "Chuva", "Arco-Íris"],
+    horario: "Qualquer Horário",
+    nivelNecessario: 9,
+    coletado: false,
+    estrelas: 0,
+    precos: [440],
+  },
+  {
+    id: 168,
+    nome: "Louva-a-deus-fantasma",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/louva-a-deus-fantasma.jpg",
+    local: "Monte Termal - Fonte Termal",
+    clima: ["Chuva", "Arco-Íris"],
+    horario: "12:00 - 00:00",
+    nivelNecessario: 9,
+    coletado: false,
+    estrelas: 0,
+    precos: [515],
+  },
+  {
+    id: 169,
+    nome: "Abelha-carpinteira-azul",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/abelha-carpinteira-azul.jpg",
+    local: "Vila dos Pescadores",
+    clima: ["Arco-Íris"],
+    horario: "18:00 - 06:00",
+    nivelNecessario: 9,
+    coletado: false,
+    estrelas: 0,
+    precos: [440],
+  },
+  {
+    id: 170,
+    nome: "Besouro-hércules",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/besouro-hercules.jpg",
+    local: "Monte Termal - Lago Vulcânico",
+    clima: ["Ensolarado", "Arco-Íris"],
+    horario: "12:00 - 00:00",
+    nivelNecessario: 10,
+    coletado: false,
+    estrelas: 0,
+    precos: [440],
+  },
+  {
+    id: 171,
+    nome: "Morpho Helena",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/morpho-helena.jpg",
+    local: "Campo Floral - Praia de Brilho Roxo",
+    clima: ["Arco-Íris"],
+    horario: "06:00 - 18:00",
+    nivelNecessario: 10,
+    coletado: false,
+    estrelas: 0,
+    precos: [240],
+  },
+  {
+    id: 172,
+    nome: "Morpho-sol",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/morpho-sol.jpg",
+    local: "Floresta - Torre do Cervo",
+    clima: ["Arco-Íris"],
+    horario: "06:00 - 18:00",
+    nivelNecessario: 10,
+    coletado: false,
+    estrelas: 0,
+    precos: [240],
+  },
+  {
+    id: 173,
+    nome: "Bicho-do-cesto Espiral",
+    categoria: "insetos",
+    imagem: "/imagens/insetos/bicho-do-cesto-espiral.jpg",
+    local: "Floresta - Torre do Cervo",
+    clima: ["Arco-Íris"],
+    horario: "18:00 - 06:00",
+    nivelNecessario: 10,
+    coletado: false,
+    estrelas: 0,
+    precos: [440],
+  },
 ];

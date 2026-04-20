@@ -253,9 +253,9 @@ export const conquistas = [
   },
   { 
     id: "542",
-    nome: "",
-    desc: "",
-    cor: "#000000"
+    nome: "Grand Slam da Pesca",
+    desc: "Conquiste todos os títulos dos eventos diários de pesca do mar.",
+    cor: "#a39542"
   },
   { 
     id: "543",
@@ -289,9 +289,9 @@ export const conquistas = [
   },
   { 
     id: "548",
-    nome: "",
-    desc: "",
-    cor: "#000000"
+    nome: "Perito em Reparos",
+    desc: "Partilhe Kit de Reparo com 100 Construtores e os ajude.",
+    cor: "#162e63"
   },
   { 
     id: "549",

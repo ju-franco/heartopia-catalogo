@@ -332,5 +332,27 @@ export const jardinagem = [
     estrelas: 0,
     precos: [],
     evento: "Gala da Neve"
+  }, ////////////////////
+  {
+    id: 325,
+    nome: "Alface Romana",
+    categoria: "jardinagem",
+    imagem: "/imagens/jardinagem/alface-romana.jpg",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica"
+  },
+  {
+    id: 326,
+    nome: "Dente-de-leão",
+    categoria: "jardinagem",
+    imagem: "/imagens/jardinagem/dente-de-leao.jpg",
+    nivelNecessario: 1,
+    coletado: false,
+    estrelas: 0,
+    precos: [],
+    evento: "Luz e Sombra Onírica"
   } 
 ];
