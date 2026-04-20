@@ -23,13 +23,13 @@ Neste projeto, o foco foi:
 
 ## 💻 `Telas Principais`
 
-| Catálogo de Itens | Sistema de Progresso |
+| Login | Início |
 | :---: | :---: |
-| <img src="public/catalogo.png" width="500"/> | <img src="public/progresso.png" width="500"/> |
+| <img src="public/imagens/login.jpg" width="500"/> | <img src="public/imagens/home.jpg" width="500"/> |
 
-| Chat IA (Guia da Natureza) | Visualização de Itens |
+| Catálogo | Visualização de Itens |
 | :---: | :---: |
-| <img src="public/chat.png" width="500"/> | <img src="public/itens.png" width="500"/> |
+| <img src="public/imagens/progresso.jpg" width="500"/> | <img src="public/imagens/catalogo.jpg" width="500"/> |
 
 ---
 
